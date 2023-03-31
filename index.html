@@ -76,7 +76,7 @@ form.addEventListener('submit', (e) => {
   })
     .then(response => {
       if (response.status === 200) {
-        window.location.href = 'chat.html?username=' + username;
+        window.location.href = 'https://jhonyhomsi.github.io/chatroom?username=' + username;
       } else if (response.status === 401) {
         alert('Invalid username or password.')
       } else {
