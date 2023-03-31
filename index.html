@@ -60,8 +60,8 @@
         </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
     <script>
-    const form = document.querySelector('#loginForm');
-const result = document.querySelector('#result');
+const form = document.querySelector('#loginForm');
+const liveAlert = document.getElementById('liveAlertPlaceholder');
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -78,9 +78,17 @@ form.addEventListener('submit', (e) => {
       if (response.status === 200) {
         window.location.href = 'https://jhonyhomsi.github.io/chatroom?username=' + username;
       } else if (response.status === 401) {
-        alert('Invalid username or password.')
+        liveAlert.innerHTML = `
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Invalid username or password.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>`;
       } else {
-        result.textContent = 'An error occurred while trying to login.';
+        liveAlert.innerHTML = `
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            An error occurred while trying to login.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>`;
       }
     })
     .catch(error => console.error(error));
