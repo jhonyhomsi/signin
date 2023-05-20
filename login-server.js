@@ -27,7 +27,9 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         .then(result => {
           if (result) {
             res.sendStatus(200);
+            console.log("connected!");
           } else {
+            console.log("error!");
             res.sendStatus(401);
           }
         })
